@@ -220,7 +220,7 @@ static int __abortboot(int bootdelay)
 #endif
 
 #ifdef CONFIG_ARCH_ROCKCHIP
-	if (ctrlc()) {	/* we press ctrl+c ? */
+	if (ctrla()) {	/* we press ctrl+a ? */
 #else
 	/*
 	 * Check if key already pressed
@@ -237,7 +237,7 @@ static int __abortboot(int bootdelay)
 		/* delay 1000 ms */
 		ts = get_timer(0);
 		do {
-			if (ctrlc()) {	/* we got a ctrl+c key press	*/
+			if (ctrla()) {	/* we got a ctrl+a key press	*/
 				abort  = 1;	/* don't auto boot	*/
 				bootdelay = 0;	/* no more delay	*/
 # ifdef CONFIG_MENUKEY
