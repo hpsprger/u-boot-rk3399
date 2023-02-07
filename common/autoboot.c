@@ -216,7 +216,7 @@ static int __abortboot(int bootdelay)
 #ifdef CONFIG_MENUPROMPT
 	printf(CONFIG_MENUPROMPT);
 #else
-	printf("Hit key to stop autoboot('CTRL+C'): %2d ", bootdelay);
+	printf("Hit key to stop autoboot('CTRL+a'): %2d ", bootdelay);
 #endif
 
 #ifdef CONFIG_ARCH_ROCKCHIP
