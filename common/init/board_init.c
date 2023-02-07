@@ -97,7 +97,7 @@ ulong board_init_f_alloc_reserve(ulong top)
  * (seemingly useless) incrementation causes no code increase.
  */
 
-void board_init_f_init_reserve(ulong base)
+void __attribute__((optimize("O0"))) board_init_f_init_reserve(ulong base)
 {
 	struct global_data *gd_ptr;
 
