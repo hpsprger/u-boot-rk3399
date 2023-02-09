@@ -89,7 +89,7 @@ static int bootm_start(cmd_tbl_t *cmdtp, int flag, int argc,
 	return 0;
 }
 
-static int bootm_find_os(cmd_tbl_t *cmdtp, int flag, int argc,
+static int __attribute__((optimize("O0"))) bootm_find_os(cmd_tbl_t *cmdtp, int flag, int argc,
 			 char * const argv[])
 {
 	const void *os_hdr;
