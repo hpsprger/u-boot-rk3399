@@ -860,7 +860,7 @@ ulong genimg_get_kernel_addr(char * const img_addr)
  * returns:
  *     image format type or IMAGE_FORMAT_INVALID if no image is present
  */
-int genimg_get_format(const void *img_addr)
+int __attribute__((optimize("O0"))) genimg_get_format(const void *img_addr)
 {
 #if defined(CONFIG_IMAGE_FORMAT_LEGACY)
 	const image_header_t *hdr;
