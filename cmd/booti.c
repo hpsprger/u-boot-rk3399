@@ -150,7 +150,7 @@ int do_booti(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	images.os.arch = IH_ARCH_ARM64;
 	ret = do_bootm_states(cmdtp, flag, argc, argv,
 #ifdef CONFIG_SYS_BOOT_RAMDISK_HIGH
-			      //rocklee 临时屏蔽，不想让uboot来自己移动ramdisk ==>屏蔽下面的语句后，uboot不会一定ramdisk(boot_ramdisk_high), 也不会保留内存(boot_fdt_add_mem_rsv_regions)
+			      //rocklee 临时屏蔽BOOTM_STATE_RAMDISK，不想让uboot来自己移动ramdisk ==>屏蔽下面的语句后，uboot不会一定ramdisk(boot_ramdisk_high), 也不会保留内存(boot_fdt_add_mem_rsv_regions)
 				  //  BOOTM_STATE_RAMDISK |
 #endif
 			      BOOTM_STATE_OS_PREP | BOOTM_STATE_OS_FAKE_GO |
