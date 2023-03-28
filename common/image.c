@@ -1506,9 +1506,11 @@ int image_setup_linux(bootm_headers_t *images)
 	}
 
 	if (IMAGE_ENABLE_OF_LIBFDT && of_size) {
-		ret = image_setup_libfdt(images, *of_flat_tree, of_size, lmb);
-		if (ret)
-			return ret;
+		// rockllee修改，因为该函数将我传入的DTB的节点信息给修改了，我需要原生态的DTB给内核使用，所以这里临时注释掉了
+		// 其实有一个大的宏，我不想把整个大功能都给注释掉，所以这里简单粗暴的处理一下 
+		//ret = image_setup_libfdt(images, *of_flat_tree, of_size, lmb);
+		//if (ret)
+		//	return ret;
 	}
 
 	return 0;
