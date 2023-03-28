@@ -1482,15 +1482,15 @@ int boot_get_kbd(struct lmb *lmb, bd_t **kbd)
 #ifdef CONFIG_LMB
 int image_setup_linux(bootm_headers_t *images)
 {
+	// rockllee修改，因为该函数将我传入的DTB的节点信息给修改了，我需要原生态的DTB给内核使用，所以这里临时注释掉了
+	// 其实有一个大的宏，我不想把整个大功能都给注释掉，所以这里简单粗暴的处理一下 
+	// 也就是不进行 内存的预留 以及 fdt的重定位与 dtb相关的节点的修改与验证
+#if 0
 	ulong of_size = images->ft_len;
 	char **of_flat_tree = &images->ft_addr;
 	struct lmb *lmb = &images->lmb;
 	int ret;
 
-	// rockllee修改，因为该函数将我传入的DTB的节点信息给修改了，我需要原生态的DTB给内核使用，所以这里临时注释掉了
-	// 其实有一个大的宏，我不想把整个大功能都给注释掉，所以这里简单粗暴的处理一下 
-	// 也就是不进行 内存的预留 以及 fdt的重定位与 dtb相关的节点的修改与验证
-#if 0
 	if (IMAGE_ENABLE_OF_LIBFDT)
 		boot_fdt_add_mem_rsv_regions(lmb, *of_flat_tree);
 
