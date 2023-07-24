@@ -1111,7 +1111,7 @@ int mmc_hwpart_config(struct mmc *mmc,
 		if (conf->user.enh_size % mmc->hc_wp_grp_size ||
 		    conf->user.enh_start % mmc->hc_wp_grp_size) {
 			printf("User data enhanced area not HC WP group "
-			       "size aligned\n");
+			       "size aligned  enh_size=0x%x  enh_start=0x%x hc_wp_grp_size=0x%x \n", conf->user.enh_size,  conf->user.enh_start, mmc->hc_wp_grp_size);
 			return -EINVAL;
 		}
 		part_attrs |= EXT_CSD_ENH_USR;
