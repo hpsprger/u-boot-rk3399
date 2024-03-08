@@ -216,11 +216,11 @@ static int __abortboot(int bootdelay)
 #ifdef CONFIG_MENUPROMPT
 	printf(CONFIG_MENUPROMPT);
 #else
-	printf("Hit key to stop autoboot('CTRL+C'): %2d ", bootdelay);
+	printf("Hit key to stop autoboot('CTRL+A'): %2d ", bootdelay);
 #endif
 
 #ifdef CONFIG_ARCH_ROCKCHIP
-	if (ctrlc()) {	/* we press ctrl+c ? */
+	if (ctrla()) {	/* we press ctrl+c ? */
 #else
 	/*
 	 * Check if key already pressed
@@ -237,7 +237,7 @@ static int __abortboot(int bootdelay)
 		/* delay 1000 ms */
 		ts = get_timer(0);
 		do {
-			if (ctrlc()) {	/* we got a ctrl+c key press	*/
+			if (ctrla()) {	/* we got a ctrl+c key press	*/
 				abort  = 1;	/* don't auto boot	*/
 				bootdelay = 0;	/* no more delay	*/
 # ifdef CONFIG_MENUKEY

@@ -623,6 +623,32 @@ int ctrlc(void)
 
 	return 0;
 }
+
+int ctrla(void)
+{
+/* Don't allow drivers call ctrlc() to do some "exit" event(maybe enter hush) */
+#if defined(CONFIG_ARCH_ROCKCHIP) && \
+    defined(CONFIG_AVB_VBMETA_PUBLIC_KEY_VALIDATE)
+	return 0;
+#endif
+
+#ifndef CONFIG_SANDBOX
+	if (!ctrlc_disabled && gd->have_console) {
+		if (tstc()) {
+			switch (getc()) {
+			case 0x01:		/* ^A - Control A */
+				ctrlc_was_pressed = 1;
+				return 1;
+			default:
+				break;
+			}
+		}
+	}
+#endif
+
+	return 0;
+}
+
 /* Reads user's confirmation.
    Returns 1 if user's input is "y", "Y", "yes" or "YES"
 */
